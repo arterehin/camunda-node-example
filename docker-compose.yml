@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  # Configure camunda container
+  camunda:
+    container_name: camunda
+    image: camunda/camunda-bpm-platform:run-latest
+    volumes:
+      - ./camunda/resources:/camunda/configuration/resources
+    command: ["./camunda.sh", "--webapps"]
+    ports:
+      - "8080:8080"
