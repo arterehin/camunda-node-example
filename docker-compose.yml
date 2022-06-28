@@ -6,6 +6,17 @@ services:
     image: camunda/camunda-bpm-platform:run-latest
     volumes:
       - ./camunda/resources:/camunda/configuration/resources
-    command: ["./camunda.sh", "--webapps"]
+    command: ["./camunda.sh", "--webapps", "--rest"]
     ports:
       - "8080:8080"
+  # Configure backend container
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend/src:/usr/src/backend/src
+    environment:
+      - CAMUNDA_URL=http://camunda:8080
+    ports:
+      - 4000:4000
+    depends_on:
+      - camunda
