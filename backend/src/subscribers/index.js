@@ -1,5 +1,5 @@
 const variables = require('./camunda/variables');
 
-module.exports = (camunda) => {
-  variables(camunda);
+module.exports = (camunda, services) => {
+  variables(camunda, services);
 };

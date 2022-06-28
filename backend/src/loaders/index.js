@@ -1,8 +1,10 @@
 const express = require('./express');
 const camunda = require('./camunda');
-const subscribers = require('./subscribers');
+const services = require('../services')
 
 module.exports = (app) => {
-  express(app);
-  subscribers(camunda);
+  const appServices = services();
+
+  express(app, appServices);
+  require('../subscribers')(camunda, appServices);
 };
