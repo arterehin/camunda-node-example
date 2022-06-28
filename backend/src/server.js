@@ -1,17 +1,12 @@
 const express = require('express');
-const routes = require('./routes');
-const camunda = require('./camunda');
-
-// Constants
-const PORT = 4000;
+const config = require('./config');
 
 // App
 const app = express();
-app.use('/', routes());
 
-// Init camunda
-camunda();
+// Loaders
+require('./loaders')(app);
 
-app.listen(PORT, function () {
-  console.log(`Backend is running on port ${PORT}!`);
+app.listen(config.express.port, function () {
+  console.log(`Backend is running on port ${config.express.port}!`);
 });

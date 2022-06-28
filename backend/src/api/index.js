@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const handlers = require('./handlers');
+const camunda = require('./routes/camunda');
 
 module.exports = () => {
-  handlers.forEach((handler) => {
-    handler(router);
-  });
+  camunda(router);
 
   return router;
 };
